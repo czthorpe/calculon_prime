@@ -4,6 +4,7 @@ let display = document.querySelector('.display')
 let displayValue = '';
 let numbers = [];
 let operators = [];
+let shrug = '¯\\_(ツ)_ /¯';
 
 buttons.forEach((button) => {
     button.addEventListener('click', (e) => {
@@ -13,6 +14,10 @@ buttons.forEach((button) => {
 })
 
 function parseInput(input) {
+    displayValue = displayValue.toString();
+    if (displayValue == shrug) {
+        displayValue = '';
+    }
     if (displayValue.length < 27) {
         if (parseInt(input) || input == '0') {
             displayValue += input;
@@ -94,13 +99,13 @@ function evaluate() {
         }
         else if (operators[i] == '/') {
             if (numbers[i + 1] == 0) {
-                return '¯\\_(ツ)_/¯';
+                return shrug;
             }
             total /= numbers[i + 1];
         }
     }
     if (total) {
-        return total;
+        return +total.toFixed(4).toString();
     }
     return '';
 
