@@ -37,16 +37,16 @@ function parseInput(input) {
         else if (input == 'point') {
             displayValue += '.';
         }
-        else if (input == 'equals') {
-            try {
-                displayValue = evaluate();
-            } catch (error) {
-                displayValue = '';
-            }
-        }
     }
     if (input == 'clear') {
         clear();
+    }
+    else if (input == 'equals') {
+        try {
+            displayValue = evaluate();
+        } catch (error) {
+            displayValue = '';
+        }
     }
 }
 
