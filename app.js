@@ -23,16 +23,16 @@ function parseInput(input) {
             displayValue += input;
         }
         else if (input == 'add') {
-            displayValue += '+';
+            displayValue += ' + ';
         }
         else if (input == 'subtract') {
-            displayValue += '-';
+            displayValue += ' - ';
         }
         else if (input == 'multiply') {
-            displayValue += '*';
+            displayValue += ' * ';
         }
         else if (input == 'divide') {
-            displayValue += '/';
+            displayValue += ' / ';
         }
         else if (input == 'point') {
             displayValue += '.';
@@ -60,9 +60,10 @@ function evaluate() {
     let tempString = '';
     numbers = [];
     operators = [];
+    displayValue = displayValue.replace(/\s/g, "");
 
     if (!parseInt(displayValue[displayValue.length - 1]) && displayValue[displayValue.length - 1] != '0') {
-        return;
+        return '';
     }
 
     for (let i = 0; i < displayValue.length; i++) {
@@ -104,38 +105,9 @@ function evaluate() {
             total /= numbers[i + 1];
         }
     }
-    if (total) {
+    if (total || total == 0) {
         return +total.toFixed(4).toString();
     }
     return '';
 
-}
-
-function operate(a, b, operator) {
-    if (operator == '+') {
-        return add(a, b);
-    }
-    if (operator == '-') {
-        return subtract(a, b);
-    }
-    if (operator == '*') {
-        return multiply(a, b);
-    }
-    if (operator == '/') {
-        return divide(a, b);
-    }
-
-}
-
-function add(a, b) {
-    return a + b;
-}
-function subtract(a, b) {
-    return a - b;
-}
-function multiply(a, b) {
-    return a * b;
-}
-function divide(a, b) {
-    return a / b;
 }
